@@ -14,7 +14,7 @@
 ********************************************/
 #define SCREEN_HEIGHT (480)    //スクリーンサイズ（高さ）
 #define SCREEN_WIDTH  (640)    //スクリーンサイズ（幅）
-#define SCREE_COLORBIT (32)    //スクリーンカラービット
+#define SCREEN_COLORBIT (32)    //スクリーンカラービット
 #define FONT_SIZE      (20)    //文字サイズ
 
 /******************************************
@@ -50,21 +50,48 @@ int WINAPI WinMain(_In_ HINSTANCE  hinstance, _In_opt_ HINSTANCE hPrevInstance, 
 	//エラーが発生したら、終了する
 	if (DxLib_Init() == D_ERROR)
 	{
-		retun D_ERROR;
+		return D_ERROR;
 	}
 
 	//各機能の初期化処理
 	FreamControl_Initialize();    //フレームレート制御機能
+	Input_Initialize();           //入力制御機能
+
+	//シーンマネージャー初期化処理
+	//エラーが発生したら、終了する
+	if (SceneManager_Initialize(E_TITLE) == D_ERROR)
+	{
+		return D_ERROR;
+	}
+
+	//描画先画面を裏にする
+	SetFontSize(FONT_SIZE);
+
+	//ゲームループ
+	while (ProcessMessage() != D_ERROR && Input_Escape() == FALSE)
+	{
+		//入力制限機能更新処理
+		Input_Update();
+
+		//画面クリア
+		ClearDrawScreen();
+
+		//シーンマネージャー描画処理
+		SceneManager_Draw();
+
+		//フレームレート制御処理
+		FreamControl_Update();
+
+			//画面の内容を表画面に反映
+		ScreenFlip();
+
+	}
 
 
-	//入力待機
-	WaitKey();
+	//Dxライブラリ使用の終了処理
+	DxLib_End();
 
 
-   //Dxライブラリ使用の終了処理
-   DxLib_End();
-
-
-   return 0;
+	return 0;
 
 }
