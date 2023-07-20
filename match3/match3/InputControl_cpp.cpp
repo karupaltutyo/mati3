@@ -56,5 +56,72 @@ int Input_Escape(void)
 
 	//ESCキーが押されたループから抜ける
 
-	if(CheckHitKey(KEY＿INPUT_ESCAPE))
+	if (CheckHitKey(KEY_INPUT_ESCAPE))
+	{
+		ret = TRUE;
+	}
+
+	return ret;
+}
+
+/***************************
+*入力制御機能：入力情報取得処理（離した瞬間）
+* 引数：指定するマウスのボタン
+* 戻り値：TRUE(入力された）、FALSE（未入力）
+***************************/
+
+int GetOldKey(int Key)
+{
+	int ret = FALSE;
+
+	if ((Key & old_button) != FALSE)
+	{
+		ret = TRUE;
+	}
+
+	return ret;
+}
+
+/***************************
+*入力制御機能：入力情報取得処理（押している）
+* 引数：指定するマウスのボタン
+* 戻り値：TRUE（入力された）、FALSE(未入力）
+***************************/
+
+int GetNowKey(int Key)
+{
+	int ret = FALSE;
+	{
+		ret = TRUE;
+	}
+
+	return ret;
+}
+
+/****************************
+*入力制御機能：入力情報取得処理（押した瞬間）
+* 引数：指定するマウスのボタン
+* 戻り値：TRUE(入力された）,FALSE(未入力)
+*****************************/
+
+int GeteyFlg(int Key)
+{
+	int ret = FALSE;
+	int keyfig = now_button & ~old_button;
+
+	if ((Key & keyfig) != FALSE)
+	{
+		ret = TRUE;
+	}
+	return ret;
+}
+
+/***************************
+*入力制御機能マウス座標取得処理
+* 引数：なし
+* 戻り値：マウスカーソルのx座標情報
+***************************/
+int GetMousePositinowX(void)
+{
+	
 }
