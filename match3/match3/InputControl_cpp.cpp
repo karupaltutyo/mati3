@@ -1,3 +1,4 @@
+#include"GameClearScene.h"
 #include"DxLib.h"
 #include"InputControl.h"
 
@@ -123,5 +124,16 @@ int GeteyFlg(int Key)
 ***************************/
 int GetMousePositinowX(void)
 {
-	
+	return mouse_position_x;
+}
+
+/**************************
+*入力制御機能マウス座標取得処理
+* 引数：なし
+* 戻り値：マウスカーソルのY座標情報
+**************************/
+
+int GetMousePositionY(void)
+{
+	return  mouse_position_y;
 }
