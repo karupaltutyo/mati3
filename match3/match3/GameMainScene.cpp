@@ -1,5 +1,6 @@
 #include "GameMainScene.h"
 #include "DxLib.h"
+#include "Stage.h"
 #include "SceneManager.h"
 
 /*************************
@@ -99,7 +100,7 @@ void GameMainScene_Updare(void)
 
 	case 3:
 
-		CheeckBlock();   //ブロックの確認
+		CheckBlock();   //ブロックの確認
 		break;
 
 	defalut:
@@ -111,5 +112,54 @@ void GameMainScene_Updare(void)
 	GameTime--;
 
 	//制限時間がなくなったら、ゲームオーバーに
+	if (GameTime < 0)
+	{
+		Change_Scene(E_GAME_OVER);
+	}
 
+	//ミッションを達成したら、ゲームクリアに遷移する。
+	if (Get_StageClearFlag())
+	{
+		Change_Scene(E_GAME_CLEAR)
+	}
+
+}
+
+/**************************
+*ゲームメイン画面：描画処理
+* 引数：なし
+* 戻り値：なし
+**************************/
+
+void GameMainScene_Draw(void)
+{
+	int PosX = 600;
+	int tmp_level = GameLevel;
+	int tmp_score = Get_StageScore();
+
+	//ステージを描画
+	StageDraw();
+
+	//フェードアウト状態か？
+	if (Get_StageState() == 1)
+	{
+		FadeOutBlock();   //フェードアウトする。
+	}
+
+	//レベルを描画
+	do {
+		DrawRotaGraph(PosX, 80, 0.3f, 0, NumberImage[tmp_score % 10].TRUE);
+		tmp_score /= 10;
+		PosX -= 20;
+	} while (tmp_score > 0);
+
+	//スコアの描画
+	PosX = 620;
+	do {
+		DrawRotaGraph(PosX, 160, 0.3f, 0, NumberImage[tmp_score % 10], TRUE);
+	}
+
+
+	//制限時間の描画
+	DrawBox(491, 469, 509, 469 - GameTime / 60 * 2, 0x0033ff, TRUE);
 }
