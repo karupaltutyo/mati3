@@ -135,7 +135,9 @@
     <ClCompile Include="FreamControl.cpp" />
     <ClCompile Include="GameClearScene_cpp.cpp" />
     <ClCompile Include="GameMainScene.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="InputControl_cpp.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FreamControl.h" />
