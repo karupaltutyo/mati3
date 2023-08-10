@@ -138,6 +138,7 @@
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="InputControl_cpp.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FreamControl.h" />
