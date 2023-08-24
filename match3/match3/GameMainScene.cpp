@@ -7,7 +7,7 @@
 *マクロ定義
 *************************/
 
-#define IMLIMIT (3600 * 3)//制限時間
+#define TIMLIMIT (3600 * 3)//制限時間
 #define NUMBER_IMAGE_MAX (10)  //数字画像数  
 
 /*************************
@@ -72,7 +72,7 @@ int GameMainScene_Initialize(void)
 		GameLevel++;      //ゲームレベルの更新
 		Set_StageMission(3); //ミッションを増やす
 	}
-	GameTime = TIMELIMIT;  //制限時間の初期化
+	GameTime = TIMLIMIT;  //制限時間の初期化
 
 	return ret;
 
@@ -84,7 +84,7 @@ int GameMainScene_Initialize(void)
 * 戻り値；なし
 **************************/
 
-void GameMainScene_Updare(void)
+void GameMainScene_Update(void)
 {
 	switch (Get_StageState())
 	{
@@ -101,6 +101,10 @@ void GameMainScene_Updare(void)
 	case 3:
 
 		CheckBlock();   //ブロックの確認
+		break;
+
+	case 4:
+		CheckBlock();
 		break;
 
 	defalut:
@@ -120,7 +124,7 @@ void GameMainScene_Updare(void)
 	//ミッションを達成したら、ゲームクリアに遷移する。
 	if (Get_StageClearFlag())
 	{
-		Change_Scene(E_GAME_CLEAR)
+		Change_Scene(E_GAME_CLEAR);
 	}
 
 }
@@ -148,7 +152,7 @@ void GameMainScene_Draw(void)
 
 	//レベルを描画
 	do {
-		DrawRotaGraph(PosX, 80, 0.3f, 0, NumberImage[tmp_score % 10].TRUE);
+		DrawRotaGraph(PosX, 80, 0.3f, 0, NumberImage[tmp_score % 10],TRUE);
 		tmp_score /= 10;
 		PosX -= 20;
 	} while (tmp_score > 0);
@@ -156,8 +160,12 @@ void GameMainScene_Draw(void)
 	//スコアの描画
 	PosX = 620;
 	do {
-		DrawRotaGraph(PosX, 160, 0.3f, 0, NumberImage[tmp_score % 10], TRUE);
-	}
+		DrawRotaGraph(PosX, 160, 0.3f, 0, NumberImage[tmp_score % 10], 
+TRUE);
+
+		tmp_score /= 10;
+		PosX -= 20;
+	}while(tmp_score > 0);
 
 
 	//制限時間の描画

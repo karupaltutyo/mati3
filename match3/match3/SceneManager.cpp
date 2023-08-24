@@ -15,7 +15,7 @@
 /***********************
 *変数宣言
 ***********************/
-GAME_MODE GAME_MODE;                  //ゲームモード情報（現在）
+GAME_MODE Game_Mode;                  //ゲームモード情報（現在）
 GAME_MODE Next_Mode;                  //ゲームモード情報（次）
 
 /***********************
@@ -86,11 +86,15 @@ void SceneManager_Update(void)
 				TitleScene_Update();
 				break;
 		case E_GAMEMAIN:
-					GameMainSScene_Update();
+					GameMainScene_Update();
 					break;
 		case E_GAME_CLEAR:
 						GameClearScene_Update();
 						break;
+		case E_GAME_OVER:
+			GameOverScene_Update();
+			break;
+
 		default:
 						break;
 		}
@@ -108,7 +112,7 @@ void SceneManager_Draw(void)
 	switch (Game_Mode)
 	{
 	case E_TITLE:
-		TtleScene_Draw();
+		TitleScene_Draw();
 		break;
 	case E_GAMEMAIN:
 		GameMainScene_Draw();

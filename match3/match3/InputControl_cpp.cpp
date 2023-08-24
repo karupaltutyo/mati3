@@ -21,7 +21,7 @@ int mouse_position_y;
 * 戻り値：なし
 ***************************/
 
-void Input_Intalize(void)
+void Input_Initialize(void)
 {
 	old_button = NULL;
 	now_button = NULL;
@@ -105,7 +105,7 @@ int GetNowKey(int Key)
 * 戻り値：TRUE(入力された）,FALSE(未入力)
 *****************************/
 
-int GeteyFlg(int Key)
+int GetKeyFlg(int Key)
 {
 	int ret = FALSE;
 	int keyfig = now_button & ~old_button;
@@ -122,7 +122,7 @@ int GeteyFlg(int Key)
 * 引数：なし
 * 戻り値：マウスカーソルのx座標情報
 ***************************/
-int GetMousePositinowX(void)
+int GetMousePositionX(void)
 {
 	return mouse_position_x;
 }

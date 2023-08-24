@@ -73,6 +73,9 @@ int WINAPI WinMain(_In_ HINSTANCE  hinstance, _In_opt_ HINSTANCE hPrevInstance, 
 		//入力制限機能更新処理
 		Input_Update();
 
+		//シーンマネージャー更新処理
+		SceneManager_Update();
+
 		//画面クリア
 		ClearDrawScreen();
 
