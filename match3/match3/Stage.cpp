@@ -172,12 +172,7 @@ void StageDraw(void) {
 	SetFontSize(20);
 	DrawFormatString(590, 211, GetColor(255, 255, 255), "%3d", Stage_Mission);
 
-	//アイテムの取得個数を描画
-	for (int i = 0; i < ITEM_MAX; i++)
-	{
-		DrawRotaGraph(540, 245 + i * 30, 0.5f, 0, BlockImage[i + 1], TRUE, 0);
-		DrawFormatString(580, 235 + i * 30, GetColor(255, 255, 255), "%3d", Item[i]);
-	}
+	
 }
 
 /*******************************
@@ -305,7 +300,7 @@ TmpBlock;
 		Result = 0;
 		Result += combo_check(Select[NEXT_CURSOR].y + 1,
 Select[NEXT_CURSOR].x + 1);
-		Result + combo_check(Select[TMP_CURSOR].y + 1,
+		Result += combo_check(Select[TMP_CURSOR].y + 1,
 Select[TMP_CURSOR].x + 1);
 
 		//連鎖が３未満なら選択ブロックを元に戻す
@@ -519,7 +514,7 @@ int Get_StageScore(void)
 
 void Set_StageMission(int mission)
 {
-	Stage_Mission + mission;
+	Stage_Mission +=mission;
 }
 
 /************************

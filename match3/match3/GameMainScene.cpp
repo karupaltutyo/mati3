@@ -67,7 +67,7 @@ int GameMainScene_Initialize(void)
 		Set_StageMission(3);//ミッションの初期化
 		GameCount++;        //次回の設定
 	}
-	else
+	else 
 	{
 		GameLevel++;      //ゲームレベルの更新
 		Set_StageMission(3); //ミッションを増やす
@@ -104,7 +104,7 @@ void GameMainScene_Update(void)
 		break;
 
 	case 4:
-		CheckBlock();
+		CheckClear();
 		break;
 
 	defalut:
@@ -152,10 +152,10 @@ void GameMainScene_Draw(void)
 
 	//レベルを描画
 	do {
-		DrawRotaGraph(PosX, 80, 0.3f, 0, NumberImage[tmp_score % 10],TRUE);
-		tmp_score /= 10;
-		PosX -= 20;
-	} while (tmp_score > 0);
+		DrawRotaGraph(PosX, 80, 0.3f, 0, NumberImage[tmp_level % 10],TRUE);
+		tmp_level /= 10;
+		PosX -= 30;
+	} while (tmp_level > 0);
 
 	//スコアの描画
 	PosX = 620;

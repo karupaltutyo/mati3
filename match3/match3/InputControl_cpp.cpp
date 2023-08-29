@@ -97,6 +97,7 @@ int GetNowKey(int Key)
 	}
 
 	return ret;
+
 }
 
 /****************************
